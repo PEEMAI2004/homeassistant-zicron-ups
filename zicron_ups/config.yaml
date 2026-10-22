@@ -1,0 +1,34 @@
+name: "Zicron UPS Monitor"
+version: "1.0.0"
+slug: "zicron_ups"
+description: "USB Telemetry & NUT Server for Zicron UPS (USB HID MEC0003 / UPSmart Protocol)"
+url: "https://github.com/PEEMAI2004/homeassistant-zicron-ups"
+arch:
+  - amd64
+  - aarch64
+  - armv7
+  - armhf
+  - i386
+startup: services
+boot: auto
+init: false
+host_network: true
+usb: true
+privileged:
+  - SYS_RAWIO
+devices:
+  - /dev/bus/usb
+ports:
+  3493/tcp: 3493
+  9120/tcp: 9120
+ports_description:
+  3493/tcp: "NUT Server Port"
+  9120/tcp: "Web Dashboard & Prometheus Metrics"
+ingress: true
+ingress_port: 9120
+panel_icon: "mdi:battery-charging"
+panel_title: "Zicron UPS"
+options:
+  poll_interval: 2
+schema:
+  poll_interval: "int"
